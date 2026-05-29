@@ -1,0 +1,21 @@
+# Core data processing and numerical computing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Statistical analysis
+scipy>=1.10.0
+statsmodels>=0.14.0
+
+# Deep learning (for matrix factorization)
+torch>=2.0.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# Jupyter notebook support (optional, for interactive use)
+jupyter>=1.0.0
+ipykernel>=6.0.0

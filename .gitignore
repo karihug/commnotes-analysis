@@ -1,1 +1,21 @@
+__pycache__/
+*.py[cod]
 .ipynb_checkpoints/
+
+# Local environments
+.venv/
+venv/
+
+# Generated data and outputs
+*.csv
+*.tsv
+*.parquet
+*.pkl
+*.log
+*.err
+output/
+outputs/
+weekly_outputs/
+output_final/
+output_metrics/
+plots/
