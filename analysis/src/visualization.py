@@ -6,12 +6,13 @@ import matplotlib as mpl
 import seaborn as sns
 import scipy.stats as st
 from matplotlib.lines import Line2D
+from pathlib import Path
 
 # ---------------------------------------------------------------------------
-# PNAS-style shared constants and helpers
+# Publication-style shared constants and helpers
 # ---------------------------------------------------------------------------
 
-# Palette matching analysis/final_code/sample.py
+# Shared palette for publication figures.
 _C_BLUE   = "#1F77B4"   # pre-rollout / baseline / current method
 _C_ORANGE = "#D85A30"   # post-rollout / proposed method
 _C_EVENT  = "#D62728"   # intervention line
@@ -30,7 +31,7 @@ _FONT_LEGEND = 9
 _FONT_ANNOT  = 8
 
 
-def apply_pnas_style():
+def apply_publication_style():
     """Apply the shared figure style used by the sample.py templates."""
     mpl.rcParams.update({
         "font.family": "DejaVu Sans",
@@ -53,11 +54,11 @@ def apply_pnas_style():
     })
 
 
-apply_pnas_style()
+apply_publication_style()
 
 
 def _setup_ax(ax):
-    """Apply shared PNAS axis aesthetics from the sample.py templates."""
+    """Apply shared publication axis aesthetics from the sample.py templates."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_linewidth(0.8)
@@ -83,6 +84,7 @@ def _finalize(fig, ax_or_axes, xlabel=None, ylabel=None, title=None,
             fig.suptitle(title, fontsize=_FONT_TITLE + 1, y=1.02)
     fig.tight_layout()
     if save_path:
+        Path(save_path).parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.show()
 
@@ -465,7 +467,7 @@ def plot_logit_rdd(df: pd.DataFrame, intervention_date_str: str = "2022-10-01"):
            title='Regression discontinuity of logit coefficient',
            x_label='Month number',
            y_label='Logit coefficient (dot product → helpfulness)')
-    # apply PNAS spine cleanup to the active axes after rdplot draws
+    # apply publication spine cleanup to the active axes after rdplot draws
     _setup_ax(plt.gca())
     plt.tight_layout()
     plt.show()
